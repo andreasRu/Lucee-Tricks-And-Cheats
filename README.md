@@ -27,23 +27,13 @@ Sometimes you don't know where is the web-context placed. Throw this snippet som
 				};
 		
 		// if available, iterate enum of InitParamNames and get the values
-		if( StructIsEmpty(  local.servletInitParamNames ) ){
+		
+		cfloop( collection="#servletInitParamNames#" item="item" ){
 			
-			structInsert( 
-				local.info["ServletInitParameters"] , 
-				"info", 
-				"No initial parameters have been submitted to this servlet engine. Very probably the servlet engines default setting is being used."
-			);
-	
-		} else {
-			
-			cfloop( collection="#servletInitParamNames#" item="item" ){
-				
-				structInsert( local.info["ServletInitParameters"] , item, local.servletConfig.getInitParameter( item.toString() ) );
-			};
-			
+			structInsert( local.info["ServletInitParameters"] , item, local.servletConfig.getInitParameter( item.toString() ) );
 		};
-	
+			
+		
 		return local.info;
 	}
 	
