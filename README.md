@@ -21,7 +21,7 @@ Sometimes you don't know where is the web-context placed. Throw this snippet som
 		
 		// populate struct with gathered information
 		local.info={
-				"label" : getpagecontext().getCFMLFactory().getLabel(),
+				"context-label" : getpagecontext().getCFMLFactory().getLabel(),
 				"configFileLocation" : pageCFMLFactoryConfig.getConfigFile(),
 				"ServletInitParameters": [:]
 				};
