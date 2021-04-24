@@ -23,7 +23,7 @@ Sometimes you don't know where is the web-context placed. Throw this snippet som
 		local.info={
 				"context-label" : getpagecontext().getCFMLFactory().getLabel(),
 				"configFileLocation" : pageCFMLFactoryConfig.getConfigFile(),
-				"ServletInitParameters": [:]
+				"servletInitParameters": [:]
 				};
 		
 		// if available, iterate enum of InitParamNames and get the values
