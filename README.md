@@ -51,9 +51,10 @@ writedump(var="#getServerWebContextInfoAsStruct()#");
 </cfscript>
 ```
 
-## Get a struct of all available two-letter language codes and their target language names 
-Lucee uses the underlying Java locale from java.util.Locale for lsFunctions. As long as the language is supported in Java, you can use it's locale. 
-This script returns the 2-letter locales and the language names in their respective language (different from the getDisplayName() function).
+## Get a struct of all available two-letter language codes and their target language names of the underlying Java.util.Locale Class
+Lucee uses the underlying Java locale from Java.util.Locale for ls-Functions. As long as the language is supported in Java, the locale can also be used in Lucee CFML.
+Some Java version just don't support all Java Locales (e.g. Java 8 doesn't support the Locale "Filipino ( Philippines )", but AdoptOpenJDK 11.0.4 does. 
+This script returns all availabe 2-letter language codes and their language names in their respective language (different from the getDisplayName() function which returns the name in the OS language ).
 
 ```JavaScript
 <cfscript>
