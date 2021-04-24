@@ -52,6 +52,9 @@ writedump(var="#getServerWebContextInfoAsStruct()#");
 ```
 
 ## Get a struct of all available two-letter language codes and their target language names 
+Lucee uses the underlying Java locale from java.util.Locale for lsFunctions. As long as the language is supported in Java, you can use it's locale. 
+This script returns the 2-letter locales and the language names in their respective language (different from the getDisplayName() function).
+
 ```JavaScript
 <cfscript>
 /**
