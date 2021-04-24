@@ -50,3 +50,30 @@ Sometimes you don't know where is the web-context placed. Throw this snippet som
 writedump(var="#getServerWebContextInfoAsStruct()#");		
 </cfscript>
 ```
+
+## Get a struct of all available two-letter language codes and their target language names 
+```JavaScript
+<cfscript>
+/**
+ * returns as struct of all available 2-letter codes of the underlying java.util with the referring Language DisplayName (target language)
+ */
+public struct function getAvailableJavaLocalesAsStruct(){
+
+    // Get Locale List
+    local.JavaLocale = CreateObject("java", "java.util.Locale");
+    local.availableJavaLocalesArray=JavaLocale.getAvailableLocales();
+    // initialize an ordered struct with shorthand [:]
+    local.availableJavaLocalesStruct =[:];
+    cfloop( array= "#availableJavaLocalesArray#" item="itemLocale" ){
+        if( len( itemLocale.toLanguageTag() ) == 2 ){
+            local.displayNameTargetLanguage=itemLocale.info();
+            local.availableJavaLocalesStruct[itemLocale.toLanguageTag()] = UcFirst( local.displayNameTargetLanguage["display"]["language"] );
+            }	 
+    }
+    
+    return local.availableJavaLocalesStruct;
+
+}
+writeDump(var="#getAvailableJavaLocalesAsStruct()#");
+</cfscript>
+```
