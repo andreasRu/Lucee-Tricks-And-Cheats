@@ -63,9 +63,7 @@ public struct function getAvailableJavaLocalesAsStruct(){
             local.availableJavaLocalesStruct[itemLocale.toLanguageTag()] = {
             "language": UcFirst( local.displayNameTargetLanguage["display"]["language"] ),
             "displayName": itemLocale["displayName"],
-            
-             "codeISO-3166": itemLocale["Language"],
-            //"codeISO": itemLocale["Country"]
+            "codeISO-3166": itemLocale["Language"]
             }
         }	 
     }
