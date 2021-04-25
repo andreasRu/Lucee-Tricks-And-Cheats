@@ -58,11 +58,15 @@ public struct function getAvailableJavaLocalesAsStruct(){
     local.availableJavaLocalesArray=JavaLocale.getAvailableLocales();
     // initialize an ordered struct with shorthand [:]
     local.availableJavaLocalesStruct =[:];
-    cfloop( array= "#availableJavaLocalesArray#" item="itemLocale" ){
+    cfloop( array= "#availableJavaLocalesArray#" item="itemLocale" index="i"){
         if( len( itemLocale.toLanguageTag() ) == 2 ){
             local.displayNameTargetLanguage=itemLocale.info();
-            local.availableJavaLocalesStruct[itemLocale.toLanguageTag()] = UcFirst( local.displayNameTargetLanguage["display"]["language"] );
-            }	 
+            local.availableJavaLocalesStruct[itemLocale.toLanguageTag()] = {
+            "language": UcFirst( local.displayNameTargetLanguage["display"]["language"] ),
+            "displayName": itemLocale["displayName"],
+            "codeISO-3166": itemLocale["Code (ISO-3166)"]
+            }
+        }	 
     }
     
     return local.availableJavaLocalesStruct;
