@@ -51,7 +51,7 @@ This script returns all availabe 2-letter language codes and their language name
 /**
  * returns as struct of all available 2-letter codes of the underlying java.util with the referring Language DisplayName (target language)
  */
-public struct function getAvailableJavaLocalesAsStruct(){
+public struct function getAvailableLanguageJavaLocalesAsStruct(){
   // Get Locale List
     local.JavaLocale = CreateObject("java", "java.util.Locale");
     local.availableJavaLocalesArray=JavaLocale.getAvailableLocales();
@@ -71,6 +71,6 @@ public struct function getAvailableJavaLocalesAsStruct(){
     return local.availableJavaLocalesStruct;
 
 }
-writeDump(var="#getAvailableJavaLocalesAsStruct()#");
+writeDump(var="#getAvailableLanguageJavaLocalesAsStruct()#");
 </cfscript>
 ```
