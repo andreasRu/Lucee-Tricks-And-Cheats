@@ -61,7 +61,7 @@ public struct function getAvailableLanguageJavaLocalesAsStruct(){
         if( len( itemLocale.toLanguageTag() ) == 2  ){
             local.displayNameTargetLanguage=itemLocale.info();
             local.availableJavaLocalesStruct[itemLocale.toLanguageTag()] = {
-            "language": UcFirst( local.displayNameTargetLanguage["display"]["language"] ),
+            "targetLanguage": UcFirst( local.displayNameTargetLanguage["display"]["language"] ),
             "displayName": UcFirst(  itemLocale["displayName"] ),
             "ISO639-2": local.displayNameTargetLanguage["iso"]["Language"],
             "ISO639-1": local.displayNameTargetLanguage["Language"]
