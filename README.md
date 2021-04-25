@@ -52,19 +52,20 @@ This script returns all availabe 2-letter language codes and their language name
  * returns as struct of all available 2-letter codes of the underlying java.util with the referring Language DisplayName (target language)
  */
 public struct function getAvailableJavaLocalesAsStruct(){
-
-    // Get Locale List
+  // Get Locale List
     local.JavaLocale = CreateObject("java", "java.util.Locale");
     local.availableJavaLocalesArray=JavaLocale.getAvailableLocales();
     // initialize an ordered struct with shorthand [:]
     local.availableJavaLocalesStruct =[:];
     cfloop( array= "#availableJavaLocalesArray#" item="itemLocale" index="i"){
-        if( len( itemLocale.toLanguageTag() ) == 2 ){
+        if( len( itemLocale.toLanguageTag() ) == 2  ){
             local.displayNameTargetLanguage=itemLocale.info();
             local.availableJavaLocalesStruct[itemLocale.toLanguageTag()] = {
             "language": UcFirst( local.displayNameTargetLanguage["display"]["language"] ),
             "displayName": itemLocale["displayName"],
-            "codeISO-3166": itemLocale["Code (ISO-3166)"]
+            
+             "codeISO-3166": itemLocale["Language"],
+            //"codeISO": itemLocale["Country"]
             }
         }	 
     }
