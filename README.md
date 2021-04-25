@@ -1,4 +1,4 @@
-# lucee-cheats-and-tricks
+# Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
 ## Get Server Web Context Information
