@@ -2,7 +2,7 @@
 Just a bunch of snippets
 
 ## Get Server Web Context Information
-Sometimes you don't know where is the web-context placed. Throw this snippet somewhere into your code and run it!
+Sometimes you're not sure where the web/server context is, e.g. when you've moved the context out of the document root. Throw this snippet somewhere into your code and run it!
 ```JavaScript
 <cfscript>
 /**
