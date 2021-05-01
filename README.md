@@ -93,9 +93,9 @@ Sample code testDSN.cfm
 </cfscript>
 ```
 
-## Memberfunctions & 
+## Memberfunctions & cfloops/for-loops
 
-cfloop vs listMap
+### cfloop vs listMap
 ```JavaScript
 <cfscript>
 mylist="bike,bicycle,bus,car,van,trailer";
@@ -113,7 +113,7 @@ writedump(var="#[finallist]#");
 
 vs.
 
-```Javascript
+```ini
 <cfscript>
 mylist="bike,bicycle,bus,car,van,trailer";
 // one expression with closure function
