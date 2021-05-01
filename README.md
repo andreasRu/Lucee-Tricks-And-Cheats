@@ -76,11 +76,11 @@ writeDump(var="#getAvailableLanguageJavaLocalesAsStruct()#");
 </cfscript>
 ```
 
-## How to connect to a DB with Maria JDBC Driver CreateObject and execute a query:
+## How to connect to a DB with Maria JDBC Driver and CreateObject and execute a query:
 Download the OSGI compliant Bundle from https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.6.1 to commandbox server instance \lucee-x.x.x.x\WEB-INF\lib:
 
 Sample code testDSN.cfm
-```html
+```JavaScript
 <cfscript>
     classLoader = createObject("java", "org.mariadb.jdbc.Driver");
     driverManager = createObject("java","java.sql.DriverManager");
