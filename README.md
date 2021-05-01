@@ -92,3 +92,36 @@ Sample code testDSN.cfm
     writeDump( "#classLoader#" );
 </cfscript>
 ```
+
+## Memberfunctions & 
+
+cfloop vs listMap
+```JavaScript
+<cfscript>
+mylist="bike,bicycle,bus,car,van,trailer";
+// two expressions, lexical scoping
+finallist="";
+cfloop( list="#mylist#",  item="element", index="index") {
+	    finallist=finallist.listAppend(
+	   	"#index#:" & element.listLast(",").uCFirst().reverse()
+	   	)
+  }
+
+writedump(var="#[finallist]#");
+</cfscript>
+```
+
+vs.
+
+```Javascript
+<cfscript>
+mylist="bike,bicycle,bus,car,van,trailer";
+// one expression with closure function
+finallist=listMap( mylist, 
+	        function(element,index, list) {
+	            return "#index#:" & element.listLast(",").uCFirst().reverse();
+	        }
+	    );
+writedump(var="#[finallist]#");
+</cfscript>
+```
