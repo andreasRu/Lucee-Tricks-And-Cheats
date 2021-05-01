@@ -98,12 +98,12 @@ Sample code testDSN.cfm
 ### cfloop vs listMap (with arrow function () => {...}
 ```ini
 <cfscript>
-mylist="bike,bicycle,bus,car,van,trailer";
+myTransportations="bicycle,bus,foot,car,train,airplane";
 // two expressions, lexical scoping
 finallist="";
-cfloop( list="#mylist#",  item="element", index="index") {
+cfloop( list="#myTransportations#",  item="element", index="index") {
 	    finallist = finallist.listAppend(
-	   	"#index#:" & element.listLast(",").uCFirst().reverse()
+	   	"#index#:" & element.listLast(",").uCFirst();
 	   	)
   }
 
@@ -115,12 +115,38 @@ vs.
 
 ```ini
 <cfscript>
-mylist="bike,bicycle,bus,car,van,trailer";
+myTransportations="bicycle,bus,foot,car,train,airplane";
 // one expression with closure function
-finallist=listMap( mylist, ( element, index, list) => {
-	            return "#index#:" & element.listLast(",").uCFirst().reverse();
+finallist=listMap( myTransportations, ( element, index, list) => {
+	            return "#index#:" & element.listLast(",").uCFirst();
 	        }
 	    );
 writedump(var="#[finallist]#");
 </cfscript>
 ```
+
+Further example:
+
+```ini
+<cfscript>
+myTransportationSequence="car,bicycle,bus,foot,car,train,airplane,bus,foot";
+// one expression with closure function
+speedSequence=listMap( myTransportationSequence, ( element, index, list) => {
+
+		  	switch(element){
+			    case "bicycle":  return "#index#:" & "slow"
+			    case "bus":  return "#index#:" & "normal"
+			    case "foot":  return "#index#:" & "very slow"
+			    case "car": return "#index#:" & "fast"
+			    case "train": return "#index#:" & "very fast"
+			    case "airplane": return "#index#:" & "ultra fast"
+			    default: return "don't know the transportation speed"; 
+			}
+	          
+	        }
+	    );
+writedump(var="#[speedSequence]#");
+</cfscript>
+```
+
+
