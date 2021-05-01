@@ -80,7 +80,7 @@ writeDump(var="#getAvailableLanguageJavaLocalesAsStruct()#");
 As example: Download the OSGI compliant Bundle from https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.6.1 to commandbox server instance \lucee-x.x.x.x\WEB-INF\lib:
 
 Sample code testDSN.cfm
-```JavaScript
+```ini
 <cfscript>
     classLoader = createObject("java", "org.mariadb.jdbc.Driver");
     driverManager = createObject("java","java.sql.DriverManager");
@@ -96,7 +96,7 @@ Sample code testDSN.cfm
 ## Memberfunctions & cfloops/for-loops
 
 ### cfloop vs listMap
-```JavaScript
+```ini
 <cfscript>
 mylist="bike,bicycle,bus,car,van,trailer";
 // two expressions, lexical scoping
