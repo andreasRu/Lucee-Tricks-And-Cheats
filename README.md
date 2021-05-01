@@ -75,3 +75,20 @@ public struct function getAvailableLanguageJavaLocalesAsStruct(){
 writeDump(var="#getAvailableLanguageJavaLocalesAsStruct()#");
 </cfscript>
 ```
+
+## How to connect to a DB with Maria JDBC Driver CreateObject and execute a query:
+Download the OSGI compliant Bundle from https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.6.1 to commandbox server instance \lucee-x.x.x.x\WEB-INF\lib:
+
+Sample code testDSN.cfm
+```html
+<cfscript>
+    classLoader = createObject("java", "org.mariadb.jdbc.Driver");
+    driverManager = createObject("java","java.sql.DriverManager");
+    connector = driverManager.getConnection("jdbc:mariadb://localhost:3306/test?user=root&password=mypassword");
+    connectionString = connector.createStatement();
+    result = connectionString.ExecuteQuery("SHOW TABLES FROM TEST;");
+    
+    writeDump( "#result#" );
+    writeDump( "#classLoader#" );
+</cfscript>
+```
