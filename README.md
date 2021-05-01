@@ -77,7 +77,7 @@ writeDump(var="#getAvailableLanguageJavaLocalesAsStruct()#");
 ```
 
 ## How to connect to a DB with Maria JDBC Driver and CreateObject and execute a query:
-Download the OSGI compliant Bundle from https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.6.1 to commandbox server instance \lucee-x.x.x.x\WEB-INF\lib:
+As example: Download the OSGI compliant Bundle from https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.6.1 to commandbox server instance \lucee-x.x.x.x\WEB-INF\lib:
 
 Sample code testDSN.cfm
 ```JavaScript
