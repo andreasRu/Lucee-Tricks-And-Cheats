@@ -130,20 +130,21 @@ Further example:
 ```ini
 <cfscript>
 myTransportationSequence="car,bicycle,bus,foot,car,train,airplane,bus,foot";
-// one expression with closure function
-speedSequence=listMap( myTransportationSequence, ( element, index, list) => {
-
-		  	switch(element){
-			    case "bicycle":  return "#index#:" & "slow"
-			    case "bus":  return "#index#:" & "normal"
-			    case "foot":  return "#index#:" & "very slow"
-			    case "car": return "#index#:" & "fast"
-			    case "train": return "#index#:" & "very fast"
-			    case "airplane": return "#index#:" & "ultra fast"
-			    default: return "don't know the transportation speed"; 
+speedSequence = listMap( 
+			myTransportationSequence, 
+			( element, index, list) => {
+			
+				switch(element){
+				    case "bicycle":  return "#index#:" & "slow"
+				    case "bus":  return "#index#:" & "normal"
+				    case "foot":  return "#index#:" & "very slow"
+				    case "car": return "#index#:" & "fast"
+				    case "train": return "#index#:" & "very fast"
+				    case "airplane": return "#index#:" & "ultra fast"
+				    default: return "don't know the transportation speed"; 
+				}
+				
 			}
-	          
-	        }
 	    );
 writedump(var="#[speedSequence]#");
 </cfscript>
