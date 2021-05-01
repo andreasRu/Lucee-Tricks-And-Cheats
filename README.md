@@ -95,7 +95,7 @@ Sample code testDSN.cfm
 
 ## Memberfunctions & cfloops/for-loops
 
-### cfloop vs listMap
+### cfloop vs listMap (with arrow function () => {...}
 ```ini
 <cfscript>
 mylist="bike,bicycle,bus,car,van,trailer";
@@ -117,8 +117,7 @@ vs.
 <cfscript>
 mylist="bike,bicycle,bus,car,van,trailer";
 // one expression with closure function
-finallist=listMap( mylist, 
-	        function(element,index, list) {
+finallist=listMap( mylist, (element,index, list) => {
 	            return "#index#:" & element.listLast(",").uCFirst().reverse();
 	        }
 	    );
