@@ -102,7 +102,7 @@ mylist="bike,bicycle,bus,car,van,trailer";
 // two expressions, lexical scoping
 finallist="";
 cfloop( list="#mylist#",  item="element", index="index") {
-	    finallist=finallist.listAppend(
+	    finallist = finallist.listAppend(
 	   	"#index#:" & element.listLast(",").uCFirst().reverse()
 	   	)
   }
@@ -117,7 +117,7 @@ vs.
 <cfscript>
 mylist="bike,bicycle,bus,car,van,trailer";
 // one expression with closure function
-finallist=listMap( mylist, (element,index, list) => {
+finallist=listMap( mylist, ( element, index, list) => {
 	            return "#index#:" & element.listLast(",").uCFirst().reverse();
 	        }
 	    );
