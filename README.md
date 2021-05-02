@@ -156,7 +156,7 @@ initialAmount=1000;
 transferedQuarterList="120,140,123,90";
 listOfTransactions="";
 interestPerQuarter=0.12;
-amount = listReduce( 
+cummulatedAmount = listReduce( 
 		transferedQuarterList, 
 		( acc, element ) => {
 			
@@ -175,6 +175,6 @@ amount = listReduce(
 
 	    , initialAmount
 	    );
-writedump(var="#[initialAmount, transferedQuarterList,listOfTransactions,amount]#");
+writedump(var="#[initialAmount:initialAmount, transferedQuarterList:transferedQuarterList,listOfTransactions:listOfTransactions,cummulatedAmount:cummulatedAmount]#");
 </cfscript>
 ```
