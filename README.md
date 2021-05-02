@@ -150,4 +150,31 @@ writedump(var="#[speedSequence]#");
 </cfscript>
 ```
 
+```ini
+<cfscript>
+initialAmount=1000;
+transferedQuarterList="120,140,123,90";
+listOfTransactions="";
+interestPerQuarter=0.12;
+amount = listReduce( 
+		transferedQuarterList, 
+		( acc, element ) => {
+			
+		    var newAmount = acc + ( acc + element ) * interestPerQuarter ;
+		    var calculationString = " #acc# + " &  ( acc + element ) & " * " & interestPerQuarter & " = " & acc + ( acc + element ) * interestPerQuarter ;
+		    
+		    listOfTransactions = listOfTransactions.listAppend(
 
+		    		calculationString
+
+		    );
+		    
+		    return newAmount;
+
+		}
+
+	    , initialAmount
+	    );
+writedump(var="#[initialAmount, transferedQuarterList,listOfTransactions,amount]#");
+</cfscript>
+```
