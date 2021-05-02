@@ -150,7 +150,7 @@ writedump(var="#[speedSequence]#");
 </cfscript>
 ```
 
-### listReduce: Use always if you need to reuse a calculated value to pass again to the closure (through accumulator acc)
+### listReduce: Use always if you need to reuse a calculated value to recursively pass it again to the closure (through accumulator acc)
 
 ```ini
 <cfscript>
