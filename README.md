@@ -180,3 +180,43 @@ cummulatedAmount = listReduce(
 writedump(var="#[initialAmount:initialAmount, transferedQuarterList:transferedQuarterList,listOfTransactions:listOfTransactions,cummulatedAmount:cummulatedAmount]#");
 </cfscript>
 ```
+
+### struct.reduce Example:
+```JavaScript
+<cfscript>
+/**
+ * @hint check if passed file extensiona and mimeType matches the allowed mapped file-extensions/mimeTypes combinations, usable for fileUploads/imageMagick verbose identify ;
+ */
+public boolean
+function matchesAllowedMimeTypesAndFileExtensions(
+	string fileExtension required,
+	string mimeType required
+) {
+
+
+	variables.allowedFileExtensionsAndMimeTypes = {
+		jpg: 'image/jpeg',
+		jpeg: 'image/jpeg',
+		png: 'image/png'
+	}
+	variables.isFileExtensionsAndMimeTypesAllowed = false;
+	variables.fileExtension = lcase( arguments.fileExtension );
+	variables.mimeType = lcase( arguments.mimeType );
+
+	variables.allowedFileExtensionsAndMimeTypes.reduce( function ( result, allowedExtension, allowedMimeType ) {
+		if (
+			variables.fileExtension == arguments.allowedExtension &&
+			variables.mimeType == arguments.allowedMimeType ) {
+			variables.isFileExtensionsAndMimeTypesAllowed = true;
+		}
+		return result
+	}, "" );
+
+	return variables.isFileExtensionsAndMimeTypesAllowed
+
+}
+
+writedump( matchesAllowedMimeTypesAndFileExtensions("jpg","image/jpeg") );
+writedump( matchesAllowedMimeTypesAndFileExtensions("jpg","text/html") );
+</cfscript>
+```
