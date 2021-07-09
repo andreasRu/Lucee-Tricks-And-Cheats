@@ -182,7 +182,7 @@ writedump(var="#[initialAmount:initialAmount, transferedQuarterList:transferedQu
 ```
 
 ### struct.reduce Example:
-```ini
+```JavaScript
 <cfscript>
 /**
  * @hint check if passed file extensiona and mimeType matches the allowed mapped file-extensions/mimeTypes combinations, usable for fileUploads/imageMagick verbose identify ;
