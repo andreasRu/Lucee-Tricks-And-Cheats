@@ -203,7 +203,7 @@ function matchesAllowedMimeTypesAndFileExtensions(
 	variables.fileExtension = lcase( arguments.fileExtension );
 	variables.mimeType = lcase( arguments.mimeType );
 
-	variables.allowedFileExtensionsAndMimeTypes.reduce( function ( result, allowedExtension, allowedMimeType ) {
+	variables.allowedFileExtensionsAndMimeTypes.reduce( ( result, allowedExtension, allowedMimeType ) => {
 		if (
 			variables.fileExtension == arguments.allowedExtension &&
 			variables.mimeType == arguments.allowedMimeType ) {
