@@ -181,6 +181,35 @@ writedump(var="#[initialAmount:initialAmount, transferedQuarterList:transferedQu
 </cfscript>
 ```
 
+
+### simple listReduce example to return single values of a querie column:
+```JavaScript
+<cfscript>
+fruitsQuery = queryNew( 
+    "id, fruit , price" , "numeric, varchar , numeric" , 
+    {
+        id:     [1,2,3,4,5,6,7,8,9], 
+        fruit:  [ "Bananas" , "Kiwis", "Apples", "Oranges", "Peaches", "Bananas" , "Kiwis", "Apples", "Uchuvas" ], 
+        price: [ 1.99 , 0.99 , 2.99, 3.99, 6.99, 2.99, 3.99, 6.99, 5.00 ] 
+    }
+);
+
+distinctFruitsArray = valueList( fruitsQuery.fruit ).listReduce(
+    ( acc, element ) => {
+        if( not acc.contains( element) ){
+                acc.append( element );
+        }
+        return acc;
+    }
+    
+    , [] , ","
+);
+
+dump(distinctFruitsArray);
+
+</cfscript>
+```
+
 ### struct.reduce Example:
 ```JavaScript
 <cfscript>
