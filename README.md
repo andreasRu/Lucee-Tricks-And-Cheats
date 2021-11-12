@@ -252,7 +252,8 @@ writedump( matchesAllowedMimeTypesAndFileExtensions("jpg","text/html") );
 
 
 ### JfreeChart: Imvoke the free java package in Java as an alternative to cfchart
-```
+
+```JavaScript
 <cfscript>
     // create all objects 
     ObjChartFactory = CreateObject("java", "org.jfree.chart.ChartFactory");
@@ -396,4 +397,5 @@ writedump( matchesAllowedMimeTypesAndFileExtensions("jpg","text/html") );
 <cfoutput>
 <img src="data:image/*;base64,#toBase64( ChartImgInBytes )#" />
 </cfoutput>
+
 ```
