@@ -251,7 +251,7 @@ writedump( matchesAllowedMimeTypesAndFileExtensions("jpg","text/html") );
 ```
 
 
-### JfreeChart: Imvoke the free java package in Java as an alternative to cfchart
+### JfreeChart: A collection of commands to directly invoke the jfreeChart java package shipped with Lucee as an alternative to cfml's cfchart.
 
 ```JavaScript
 <cfscript>
