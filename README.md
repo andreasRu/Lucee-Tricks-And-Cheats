@@ -1,6 +1,64 @@
 # Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
+## Function to sign a Kraken API call with CFML
+```
+<cfscript>
+
+     /**
+     * Returns a base 64 string of the signed Kraken Api Call as specified in the docs https://docs.kraken.com/rest/#section/Authentication/Headers-and-Signature
+     * This is a copy of my answer posted at Stackoverflow https://stackoverflow.com/questions/73609099/kraken-api-coldfusion/73649378#73649378
+     * Author: Andreas Rüger 2022
+     * License: MIT 
+     */
+     public string function getKrakenSignature( urlpath, postdata, nonce, secretAsBase64) localmode=true {
+
+        // assign arguments to local variables
+        urlpath= arguments.urlpath;
+        nonce= arguments.nonce;
+        postdata = arguments.postdata;
+        secretAsBase64= arguments.secretAsBase64;
+
+        // convert urlpath to a binary Hex representation 
+        urlpathBinary= toBinary( toBase64( urlpath ));
+        urlpathBinaryAsHex= BinaryEncode( urlpathBinary, "HEX");
+
+
+        // convert secret to binary
+        secretBinary= ToBinary(  arguments.secretAsBase64 );
+
+        // concatenate nonce and postdata
+        noncePostdata = nonce & postdata; 
+
+        //get binary digest as Hex representation
+        noncePostdataDigestBinaryAsHex= hash( noncePostdata, "SHA-256" );
+
+
+        // concatenate urlPath binary (hex) and noncePostDara binary (hex) 
+        messageBinaryAsHex= urlpathBinaryAsHex & noncePostdataDigestBinaryAsHex;
+
+        // convert message hex representation to binary
+        messageBinary= BinaryDecode( messageBinaryAsHex, "HEX");
+
+        // sign the message with hmac function
+        messageHmacDigestBinaryAsHex = hmac( messageBinary, secretBinary, "HMACSHA512");
+        messageHmacDigestBinary=BinaryDecode( messageHmacDigestBinaryAsHex, "HEX");
+
+        return binaryEncode( messageHmacDigestBinary, "base64" );
+
+    }
+
+encodedPayLoad="nonce=1616492376594&ordertype=limit&pair=XBTUSD&price=37500&type=buy&volume=1.25";
+nonce="1616492376594";
+api_sec = "kQH5HW/8p1uGOVjbgWA7FunAmGO8lsSUXNsu3eow76sz84Q18fWxnyRzBHCd3pd5nE9qa99HAZtuZuj6F1huXg==";
+urlpath="/0/private/AddOrder";
+signature = getKrakenSignature( urlpath, encodedPayLoad, nonce, api_sec);
+writeoutput( signature );
+
+</cfscript>
+```
+
+
 ## Get Server Web Context Information
 Sometimes you're not sure where the web/server context is, e.g. when you've moved the context out of the document root. Throw this snippet somewhere into your code and run it!
 ```JavaScript
