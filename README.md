@@ -1,8 +1,9 @@
 # Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
-## Function to sign a Kraken API call with CFML
-```
+## Function to sign a Kraken API call with CFML. This function returns a base 64 string of the signed Kraken Api Call as specified in the (KrakenAPI docs)[https://docs.kraken.com/rest/#section/Authentication/Headers-and-Signature]
+     * This is a copy of my answer posted at (Stackoverflow)[https://stackoverflow.com/questions/73609099/kraken-api-coldfusion/73649378#73649378].
+```JavaScript
 <cfscript>
 
      /**
