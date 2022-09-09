@@ -8,7 +8,7 @@ Just a bunch of snippets
 
      /**
      * Returns a base 64 string of the signed Kraken Api Call as specified in the docs https://docs.kraken.com/rest/#section/Authentication/Headers-and-Signature
-     * This is a copy of my answer posted at Stackoverflow https://stackoverflow.com/questions/73609099/kraken-api-coldfusion/73649378#73649378
+     * in CFML
      * Author: Andreas Rüger 2022
      * License: MIT 
      */
