@@ -1,6 +1,9 @@
 # Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
+## How to setup a dev environment for the Lucee Admin:
+[https://github.com/lucee/debug/issues/1](https://github.com/lucee/debug/issues/1)
+
 ## Function to sign a Kraken API call with CFML. This function returns a base 64 string of the signed Kraken Api Call as specified in the [KrakenAPI docs](https://docs.kraken.com/rest/#section/Authentication/Headers-and-Signature). This is also my answer posted at [Stackoverflow](https://stackoverflow.com/questions/73609099/kraken-api-coldfusion/73649378#73649378).
 
 ```JavaScript
