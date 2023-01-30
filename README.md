@@ -63,7 +63,7 @@ writeoutput( signature );
 ```
 
 
-## Get Server Web Context Information
+## Get Server Web Context Information From Lucee
 Sometimes you're not sure where the web/server context is, e.g. when you've moved the context out of the document root. Throw this snippet somewhere into your code and run it!
 ```JavaScript
 <cfscript>
@@ -118,8 +118,8 @@ to your classpath ( drop it to your Tomcat lib directory /or lucee-server/bundle
 public struct function getMP3Info( required string filename ) localmode = true {
     
     result = {
-        error = "",
-        info = {}
+        "error" = "",
+        "info" = {}
     };
     
     if ( FileExists( filename ) ) {
@@ -133,34 +133,37 @@ public struct function getMP3Info( required string filename ) localmode = true {
 
         try {
             mp3Parser.parse( fileInputStream, bodyContentHandler, metaData, pcontext );
-	    // dump( metaData.names() ); 
+           // dump( metaData.names() ); 
+           
             durationInSec = parseNumber( metaData.get( "xmpDM:duration" ) );
             hours = int( durationInSec / 60 / 60 );
-            restTimeSec= durationInSec - ( hours * 60 * 60 );
+            restTimeSec = durationInSec - ( hours * 60 * 60 );
             minutes = int( restTimeSec / 60 ); 
-            restTimeSec= restTimeSec - ( minutes * 60 );
+            restTimeSec = restTimeSec - ( minutes * 60 );
             seconds = restTimeSec;
             result.info = {
-                artist = metaData.get( "xmpDM:artist" ),
-                album = metaData.get( "xmpDM:album" ),
-                trackNumber = metaData.get( "xmpDM:trackNumber" ),
-                duration = numberformat( hours, "00" ) 
+                "artist" = metaData.get( "xmpDM:artist" ),
+                "album" = metaData.get( "xmpDM:album" ),
+                "trackNumber" = metaData.get( "xmpDM:trackNumber" ),
+                "duration" = numberformat( hours, "00" ) 
                             & ":" & numberformat( minutes, "00" ) 
                             & ":" & numberformat( seconds, "00" )
             }
         } catch ( any error ) {
-            result.error = error;
+            result[ "error" ] = error;
         }
         fileInputStream.close();
     } else {
-        result.error = "File not found";
+        result [ "error" ] = "File not found";
     }
     return result;
 }
 
 mp3File = expandPath( "../../" ) & "song.mp3";
 dump( getMP3Info( mp3File ) );
-<cfscript>
+
+
+</cfscript>
 ```
 
 ## Get a struct of all available two-letter language codes and their target language names of the underlying Java.util.Locale Class
