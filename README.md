@@ -103,6 +103,63 @@ writedump(var="#getServerWebContextInfoAsStruct()#");
 </cfscript>
 ```
 
+## Retrieve MP3 Tag Data with Apache TIKA Java & CFML
+Just download tika-app-2.6.0.jar from https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0.jar
+to your classpath ( drop it to your Tomcat lib directory /or lucee-server/bundle/ and run the following script
+
+```JavaScript
+/**
+*
+*   Retrieve MP3 Data with TIKA Java & CFML: Download https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0.jar
+*   and drop it to your classpath/bundle or Tomcat Lib directory. 
+*
+**/
+public struct function getMP3Info( required string filename ) localmode = true {
+    
+    result = {
+        error = "",
+        info = {}
+    };
+    
+    if ( FileExists( filename ) ) {
+
+        file = createObject( "java", "java.io.File" ).init( arguments.filename );
+        fileInputStream = createObject( "java", "java.io.FileInputStream" ).init( file );
+        bodyContentHandler = CreateObject( "java", "org.apache.tika.sax.BodyContentHandler", "../../lib/tika-app-2.6.0.jar" );
+        metaData = CreateObject( "java", "org.apache.tika.metadata.Metadata", "../../lib/tika-app-2.6.0.jar" );
+        pcontext = CreateObject( "java", "org.apache.tika.parser.ParseContext", "../../lib/tika-app-2.6.0.jar" );
+        mp3Parser = CreateObject( "java", "org.apache.tika.parser.mp3.Mp3Parser", "../../lib/tika-app-2.6.0.jar" );
+
+        try {
+            mp3Parser.parse( fileInputStream, bodyContentHandler, metaData, pcontext );
+            durationInSec = parseNumber( metaData.get( "xmpDM:duration" ) );
+            hours = int( durationInSec / 60 / 60 );
+            restTimeSec= durationInSec - ( hours * 60 * 60 );
+            minutes = int( restTimeSec / 60 ); 
+            restTimeSec= restTimeSec - ( minutes * 60 );
+            seconds = restTimeSec;
+            result.info = {
+                artist = metaData.get( "xmpDM:artist" ),
+                album = metaData.get( "xmpDM:album" ),
+                trackNumber = metaData.get( "xmpDM:trackNumber" ),
+                duration = numberformat( hours, "00" ) 
+                            & ":" & numberformat( minutes, "00" ) 
+                            & ":" & numberformat( seconds, "00" )
+            }
+        } catch ( any error ) {
+            result.error = error;
+        }
+        fileInputStream.close();
+    } else {
+        result.error = "File not found";
+    }
+    return result;
+}
+
+mp3File = expandPath( "../../" ) & "song.mp3";
+dump( getMP3Info( mp3File ) );
+```
+
 ## Get a struct of all available two-letter language codes and their target language names of the underlying Java.util.Locale Class
 Lucee uses the underlying Java locale from Java.util.Locale for ls-Functions. As long as the language is supported in Java, the locale can also be used in Lucee CFML.
 Some Java version just don't support all Java Locales (e.g. Java 8 doesn't support the Locale "Filipino ( Philippines )", but AdoptOpenJDK 11.0.4 does. 
