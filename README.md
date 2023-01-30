@@ -133,6 +133,7 @@ public struct function getMP3Info( required string filename ) localmode = true {
 
         try {
             mp3Parser.parse( fileInputStream, bodyContentHandler, metaData, pcontext );
+	    // dump( metaData.names() ); 
             durationInSec = parseNumber( metaData.get( "xmpDM:duration" ) );
             hours = int( durationInSec / 60 / 60 );
             restTimeSec= durationInSec - ( hours * 60 * 60 );
