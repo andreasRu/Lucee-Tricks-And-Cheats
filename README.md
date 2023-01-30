@@ -133,7 +133,7 @@ public struct function getMP3Info( required string filename ) localmode = true {
 
         try {
             mp3Parser.parse( fileInputStream, bodyContentHandler, metaData, pcontext );
-           // dump( metaData.names() ); 
+            //dump( metaData.names() ); 
            
             durationInSec = parseNumber( metaData.get( "xmpDM:duration" ) );
             hours = int( durationInSec / 60 / 60 );
@@ -147,7 +147,10 @@ public struct function getMP3Info( required string filename ) localmode = true {
                 "trackNumber" = metaData.get( "xmpDM:trackNumber" ),
                 "duration" = numberformat( hours, "00" ) 
                             & ":" & numberformat( minutes, "00" ) 
-                            & ":" & numberformat( seconds, "00" )
+                            & ":" & numberformat( seconds, "00" ),
+                "genre" = metaData.get( "xmpDM:genre"),
+                "comment" = metaData.get( "xmpDM:logComment" )
+                
             }
         } catch ( any error ) {
             result[ "error" ] = error;
