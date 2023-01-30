@@ -108,6 +108,7 @@ Just download tika-app-2.6.0.jar from https://repo1.maven.org/maven2/org/apache/
 to your classpath ( drop it to your Tomcat lib directory /or lucee-server/bundle/ and run the following script
 
 ```JavaScript
+<cfscript>
 /**
 *
 *   Retrieve MP3 Data with TIKA Java & CFML: Download https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0.jar
@@ -158,6 +159,7 @@ public struct function getMP3Info( required string filename ) localmode = true {
 
 mp3File = expandPath( "../../" ) & "song.mp3";
 dump( getMP3Info( mp3File ) );
+<cfscript>
 ```
 
 ## Get a struct of all available two-letter language codes and their target language names of the underlying Java.util.Locale Class
