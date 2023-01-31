@@ -1,6 +1,46 @@
 # Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
+## Access databases (mdb) on Windows
+
+Let’s say you have a setup like this:
+
+> - a database named database.accdb with a table named table1 placed at pathToYourLucee\lucee-express-5.3.10.97\database.accdb,
+> - a webroot served at pathToYourLucee\lucee-express-5.3.10.97\webapps\ROOT
+
+**Step 1:** Download Lucee Express Version 5.3.10.97 and unzip it.
+**Step 2:** Download the following OSGI compliant dependencies to your `pathToYourLucee\lucee-express-5.3.10.97\lib`:
+- [commons-lang3-3.12.0.jar](https://repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar)
+- [ucanaccess-5.0.0.jar](https://repo1.maven.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0.jar)
+- [jackcess-4.0.4.jar](https://repo1.maven.org/maven2/com/healthmarketscience/jackcess/jackcess/4.0.4/jackcess-4.0.4.jar)
+- [hsqldb-2.7.1.jar](https://repo1.maven.org/maven2/org/hsqldb/hsqldb/2.7.1/hsqldb-2.7.1.jar)
+- [commons-logging-1.2.jar](https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar)
+
+**Step 3:** Create an **Application.cfc** at `pathToYourLucee\lucee-express-5.3.10.97\webapps\ROOT\Application.cfc` with the following code:
+```JavaScript
+//Application.cfc
+component {
+
+	this.Name = "MSAccessExample";
+    	this.dataBasePath=expandPath("../../") & "database.accdb";
+    	this.datasources["msAccessDB"] = {
+        	class: "net.ucanaccess.jdbc.UcanaccessDriver",
+        	connectionString: "jdbc:ucanaccess:///" & this.dataBasePath
+     };
+}
+```
+**Step 4:** Create an **index.cfm** with the following code at `pathToYourLucee\lucee-express-5.3.10.97\webapps\ROOT\index.cfm` with the following code:
+```HTML
+<!--- index.cfm --->
+<cfquery name="myquery" datasource="msAccessDB" >
+	select * from table1;
+</cfquery>
+<cfdump var="#myquery#">
+```
+**Step 5:** Run the Lucee server from your Lucee Express Version and execute the index.cfm file.
+
+
+
 ## How to setup a dev environment for the Lucee Admin:
 [https://github.com/lucee/debug/issues/1](https://github.com/lucee/debug/issues/1)
 
