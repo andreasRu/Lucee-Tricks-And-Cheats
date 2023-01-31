@@ -5,8 +5,8 @@ Just a bunch of snippets
 
 Let’s say you have a setup like this:
 
-> - a database named database.accdb with a table named table1 placed at pathToYourLucee\lucee-express-5.3.10.97\database.accdb,
-> - a webroot served at pathToYourLucee\lucee-express-5.3.10.97\webapps\ROOT
+> - a database named database.accdb with a table named table1 placed at `pathToYourLucee\lucee-express-5.3.10.97\database.accdb`,
+> - a webroot served at `pathToYourLucee\lucee-express-5.3.10.97\webapps\ROOT`
 
 **Step 1:** Download Lucee Express Version 5.3.10.97 and unzip it.
 
