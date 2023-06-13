@@ -103,7 +103,8 @@ writeoutput( signature );
 </cfscript>
 ```
 
-## Sort a deeply nested struct recursively```JavaScript
+## Sort a deeply nested struct recursively
+```JavaScript
 <cfscript>
 /**
  * Sorts a struct recursively 
