@@ -103,6 +103,39 @@ writeoutput( signature );
 </cfscript>
 ```
 
+## Sort a deeply nested struct recursively```JavaScript
+<cfscript>
+/**
+ * Sorts a struct recursively 
+ */
+public struct function sortNestedStruct( struct datastruct ) localmode=true {
+
+// define sorted struct
+sortedStruct = [:];
+
+// Get the keys of the struct and sort them
+keys = structKeyArray( arguments.datastruct ).sort( "textnocase" );
+
+// Iterate over the sorted keys
+for (var key in keys) {
+
+    value = arguments.datastruct[ key ];
+
+    // If the value is a nested struct, recursively sort it
+    if ( isStruct( value ) ) {
+	value = sortNestedStruct( value );
+    }
+
+    // Add the key-value pair to the sorted struct
+    sortedStruct[ key ] = value;
+}
+
+return sortedStruct;
+}
+
+</cfscript>
+```
+
 
 ## Get Server Web Context Information From Lucee
 Sometimes you're not sure where the web/server context is, e.g. when you've moved the context out of the document root. Throw this snippet somewhere into your code and run it!
