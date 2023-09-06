@@ -178,6 +178,45 @@ writedump(var="#getServerWebContextInfoAsStruct()#");
 </cfscript>
 ```
 
+```JavaScript
+## CreateUpdate a cfml scheduled Task programmatically
+<cfscript>
+public query function createMyScheduledTask(){
+	cfschedule(
+		action="update"
+		task="myTestTask"
+		operation="HTTPRequest"
+		startDate="1/1/2022"
+		startTime="4:30 AM"
+		url="http://localhost:8888/?schedulerTime"
+		port="8888"
+		interval="70")
+
+		schedules=getMyScheduledTask();
+		return schedules;
+}
+
+public query function getMyScheduledTask(){
+	cfschedule(
+			action="list"
+			result = "schedules"
+		);
+
+		```
+		<cfquery name="myTestTask" dbtype="query">
+			SELECT * from schedules
+			WHERE task='myTestTask';
+		</cfquery>
+		```
+
+		return myTestTask;
+	   
+}
+
+dump( createMyScheduledTask() );
+</cfscript>
+```
+
 ## Retrieve MP3 Tag Data with Apache TIKA Java & CFML
 Just download tika-app-2.6.0.jar from https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0.jar
 to your classpath ( drop it to your Tomcat lib directory /or lucee-server/bundle/ and run the following script
