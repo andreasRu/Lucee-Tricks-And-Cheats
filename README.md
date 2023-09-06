@@ -178,8 +178,9 @@ writedump(var="#getServerWebContextInfoAsStruct()#");
 </cfscript>
 ```
 
-```JavaScript
 ## CreateUpdate a cfml scheduled Task programmatically
+Because this also updates the task engine, the programmatically way is much better than using the Lucee admin (e.g. call it on ApplicationStart())
+```JavaScript
 <cfscript>
 public query function createMyScheduledTask(){
 	cfschedule(
