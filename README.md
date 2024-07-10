@@ -1,6 +1,9 @@
 # Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
+## How to build the Lucee docs on my local machine using script-runner (e.g.)
+`ant -buildfile="D:\workspace-lucee-scriptrunner\script-runner" -DluceeVersion="6.1.0.235-SNAPSHOT" -Dwebroot="D:\workspace_luceedocs\lucee-docs" -Dexecute="/build-all.cfm"`
+
 ## How To Connect Lucee to a MS-Access Databases (mdb) on Windows With Ucanaccess
 
 Let’s say you have a setup like this:
