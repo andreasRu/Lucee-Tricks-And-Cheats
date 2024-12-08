@@ -96,7 +96,7 @@ car.drive(); // Outputs: Driving the car... Gasoline engine started.
 
 ### Conclusion
 
-This CFScript version of the car and engine example demonstrates how to implement Dependency Injection using WireBox in ColdFusion. The structure remains similar to the previous CFML tag example, but it utilizes CFScript syntax for a more programmatic approach. This allows for clear and concise definitions of components while still leveraging WireBox's powerful DI capabilities.
+This CFScript version of the car and engine example demonstrates how to implement Dependency Injection using WireBox in ColdFusion. This allows for clear and concise definitions of components while still leveraging WireBox's powerful DI capabilities.
 
 ==============================================================================================================================================================================================================
 
