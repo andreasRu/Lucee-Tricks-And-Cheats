@@ -98,6 +98,9 @@ car.drive(); // Outputs: Driving the car... Gasoline engine started.
 
 This CFScript version of the car and engine example demonstrates how to implement Dependency Injection using WireBox in ColdFusion. This allows for clear and concise definitions of components while still leveraging WireBox's powerful DI capabilities.
 
+### Important notes 
+Injected properties are not available within init() method, so you need to use the `onDICompletr()` function to assign injected properties to a component instance. For more details see (https://stackoverflow.com/a/53214982/2645359)[https://stackoverflow.com/a/53214982/2645359]
+
 ==============================================================================================================================================================================================================
 
 ## How to build the static Lucee docs on my local machine using Lucees script-runner repo (e.g.)
