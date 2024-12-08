@@ -1,6 +1,105 @@
 # Lucee-Tricks-And-Cheats
 Just a bunch of snippets
 
+
+## Example using Dependency Injection with a Car-Instance. It will include the `Engine` Comnponent, the `GasolineEngine` and `DieselEngine` implementations and the WireBox configuration.
+
+### Complete Example: Car and Engine with WireBox in CFScript
+
+#### Step 1: Define the Engine Interface
+
+**Engine.cfc**
+```cfml
+component {
+    public function start() {
+        // This method will be implemented by subclasses
+    }
+}
+```
+
+#### Step 2: Define the GasolineEngine Component
+
+**GasolineEngine.cfc**
+```cfml
+component extends="path.to.Engine" {
+    public function start() {
+        writeOutput("Gasoline engine started.<br>");
+    }
+}
+```
+
+#### Step 3: Define the DieselEngine Component
+
+**DieselEngine.cfc**
+```cfml
+component extends="path.to.Engine" {
+    public function start() {
+        writeOutput("Diesel engine started.<br>");
+    }
+}
+```
+
+#### Step 4: Define the Car Component
+
+**Car.cfc**
+```cfml
+component {
+    property engine; // Declare the engine property
+
+    public function init() {
+        return this; // Return the instance
+    }
+
+    public function drive() {
+        writeOutput("Driving the car...<br>");
+        engine.start(); // Call the start method on the injected engine
+    }
+}
+```
+
+#### Step 5: Configure WireBox
+
+**WireBox.cfc**
+```cfml
+component extends="coldbox.system.ioc.config.Binder" {
+    public function configure() {
+        // Map the Engine implementations
+        map("engine", "path.to.GasolineEngine").asSingleton(); // Use GasolineEngine as singleton
+        // Alternatively, you could switch to DieselEngine by changing this mapping
+        // map("engine", "path.to.DieselEngine").asSingleton();
+
+        // Map the Car component
+        map("Car", "path.to.Car");
+    }
+}
+```
+
+#### Step 6: Using the Car Component
+
+**Usage Example**
+```cfml
+car = wirebox.getInstance("Car"); // Automatically injects GasolineEngine
+car.drive(); // Outputs: Driving the car... Gasoline engine started.
+```
+
+### Explanation of How WireBox Automates DI in CFScript
+
+1. **Interface Definition**: The `Engine` interface defines a common contract for all engine types with a method `start()`.
+
+2. **Implementation Classes**: Both `GasolineEngine` and `DieselEngine` extend from the `Engine` interface and implement their specific versions of the `start()` method.
+
+3. **Injection in Car**: The `Car` component has a property for an engine. When instantiated, it will automatically receive an instance of whatever is mapped to `"engine"`.
+
+4. **Configuration in WireBox**: The `WireBox.cfc` file contains mappings that tell WireBox how to instantiate components. Here, we specify that `"engine"` should resolve to a singleton instance of `GasolineEngine`.
+
+5. **Automatic Resolution**: When we request an instance of `Car`, WireBox automatically injects the appropriate engine based on our configuration.
+
+### Conclusion
+
+This CFScript version of the car and engine example demonstrates how to implement Dependency Injection using WireBox in ColdFusion. The structure remains similar to the previous CFML tag example, but it utilizes CFScript syntax for a more programmatic approach. This allows for clear and concise definitions of components while still leveraging WireBox's powerful DI capabilities.
+
+==============================================================================================================================================================================================================
+
 ## How to build the static Lucee docs on my local machine using Lucees script-runner repo (e.g.)
 `ant -buildfile="D:\workspace-lucee-scriptrunner\script-runner" -DluceeVersion="6.1.0.235-SNAPSHOT" -Dwebroot="D:\workspace_luceedocs\lucee-docs" -Dexecute="/build-all.cfm"`
 
