@@ -44,7 +44,7 @@ component extends="path.to.Engine" {
 **Car.cfc**
 ```cfml
 component {
-    property engine; // Declare the engine property
+    property name="engine" inject="id:engine"; // Specify injection here
 
     public function init() {
         return this; // Return the instance
