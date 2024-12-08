@@ -17,7 +17,7 @@ component {
 }
 ```
 
-#### Step 2: Define the GasolineEngine Component
+#### Step 2: Define the GasolineEngine Component that inherits Engine.cfc
 
 **GasolineEngine.cfc**
 ```cfml
@@ -28,7 +28,7 @@ component extends="path.to.Engine" {
 }
 ```
 
-#### Step 3: Define the DieselEngine Component
+#### Step 3: Define the DieselEngine Component that inherits Engine.cfc
 
 **DieselEngine.cfc**
 ```cfml
